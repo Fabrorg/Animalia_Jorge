@@ -1,43 +1,53 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
     
-    <ion-tab-button *ngIf="!userRol" tab="Inicio" href="/Inicio">
+    <ion-tab-button *ngIf="!userRol" tab="Inicio" href="/tabs/Inicio">
       <ion-icon name="home"></ion-icon>
       <ion-label>Inicio</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="Animales" href="/Animales">
+    <ion-tab-button tab="Animales" href="/tabs/Animales">
       <ion-icon name="paw"></ion-icon>
       <ion-label>Animales</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="Empresas" href="/Empresas">
+    <ion-tab-button tab="Empresas" href="/tabs/Empresas">
       <ion-icon name="business"></ion-icon>
       <ion-label>Empresas</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button *ngIf="userRol == 'USER'" tab="Camara" href="/Camara">
+    <ion-tab-button *ngIf="userRol == 'USER'" tab="Camara" href="/tabs/Camara">
       <ion-icon name="camera"></ion-icon>
       <ion-label>Cámara</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button *ngIf="userRol == 'EMPRESA' || userRol == 'ADMIN'" tab="Rescates" href="/Rescates">
+    <ion-tab-button *ngIf="userRol == 'EMPRESA' || userRol == 'ADMIN'" tab="Rescates" href="/tabs/Rescates">
       <ion-icon name="medical"></ion-icon>
       <ion-label>Rescates</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button *ngIf="userRol == 'ADMIN'" tab="Gestion" href="/Gestion">
+    <ion-tab-button *ngIf="userRol == 'ADMIN'" tab="Gestion" href="/tabs/Gestion">
       <ion-icon name="construct"></ion-icon>
       <ion-label>Gestión</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button *ngIf="!userRol" tab="IniciarSesion" href="/Sign-form">
+    <ion-tab-button *ngIf="userRol == 'USER'" tab="avisos-domesticos" href="/tabs/avisos-domesticos">
+      <ion-icon name="paw"></ion-icon>
+      <ion-label>Avisos</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="userRol == 'USER'" tab="lista-avisos-domesticos" href="/tabs/lista-avisos-domesticos">
+      <ion-icon name="list"></ion-icon>
+      <ion-label>Ver Avisos</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="!userRol" tab="IniciarSesion" href="/tabs/IniciarSesion">
       <ion-icon name="person"></ion-icon>
       <ion-label>Iniciar Sesión</ion-label>
     </ion-tab-button>
 
     <ion-tab-button
-      *ngIf="userRol == 'USER' ||  userRol == 'ADMIN' || userRol == 'EMPRESA'" tab="Perfil"href="/perfil">
+      *ngIf="userRol == 'USER' ||  userRol == 'ADMIN' || userRol == 'EMPRESA'" tab="Perfil" href="/tabs/Perfil">
       <ion-icon name="person"></ion-icon>
       <ion-label>Perfil</ion-label>
     </ion-tab-button>

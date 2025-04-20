@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS Fotos;
 DROP TABLE IF EXISTS Animales;
 DROP TABLE IF EXISTS Empresas;
 DROP TABLE IF EXISTS Usuarios;
+DROP TABLE IF EXISTS AvisosDomesticos;
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- Tabla de Usuarios
@@ -73,4 +74,20 @@ CREATE TABLE Fotos (
     fecha_captura DATE NOT NULL,
     descripcion TEXT,
     FOREIGN KEY (id_rescate) REFERENCES Rescates(id_rescate) ON DELETE CASCADE
+);
+
+-- Tabla de Avisos Domésticos
+CREATE TABLE AvisosDomesticos (
+    id_aviso INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    especie VARCHAR(100) NOT NULL,
+    raza VARCHAR(100) NOT NULL,
+    descripcion TEXT NOT NULL,
+    ubicacion TEXT NOT NULL,
+    estado ENUM('PERDIDO', 'ENCONTRADO', 'ADOPCION') NOT NULL,
+    fecha_aviso DATE NOT NULL,
+    foto TEXT,
+    deleted BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE
 );

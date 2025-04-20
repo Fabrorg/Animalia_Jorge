@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Avisos de Animales Domésticos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="text-align: center; margin: 20px;">
+    <ion-button (click)="showAddAvisoForm()">Añadir Aviso</ion-button>
+  </div>
+
+  <div *ngIf="showAvisoForm">
+    <form (submit)="addAviso()">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="newAviso.nombre" name="nombre" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Especie</ion-label>
+        <ion-input [(ngModel)]="newAviso.especie" name="especie" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Raza</ion-label>
+        <ion-input [(ngModel)]="newAviso.raza" name="raza" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea [(ngModel)]="newAviso.descripcion" name="descripcion" required></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Ubicación</ion-label>
+        <ion-input [(ngModel)]="newAviso.ubicacion" name="ubicacion" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Estado</ion-label>
+        <ion-select [(ngModel)]="newAviso.estado" name="estado" required>
+          <ion-select-option value="PERDIDO">Perdido</ion-select-option>
+          <ion-select-option value="ENCONTRADO">Encontrado</ion-select-option>
+          <ion-select-option value="ADOPCION">En adopción</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Foto (URL)</ion-label>
+        <ion-input [(ngModel)]="newAviso.foto" name="foto"></ion-input>
+      </ion-item>
+
+      <ion-button type="submit">Guardar</ion-button>
+      <ion-button color="danger" (click)="cancelAddAviso()">Cancelar</ion-button>
+    </form>
+  </div>
+
+  <div *ngIf="showUpdateAvisoForm">
+    <form (submit)="updateAviso()">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="selectedAviso.nombre" name="nombre" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Especie</ion-label>
+        <ion-input [(ngModel)]="selectedAviso.especie" name="especie" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Raza</ion-label>
+        <ion-input [(ngModel)]="selectedAviso.raza" name="raza" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea [(ngModel)]="selectedAviso.descripcion" name="descripcion" required></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Ubicación</ion-label>
+        <ion-input [(ngModel)]="selectedAviso.ubicacion" name="ubicacion" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Estado</ion-label>
+        <ion-select [(ngModel)]="selectedAviso.estado" name="estado" required>
+          <ion-select-option value="PERDIDO">Perdido</ion-select-option>
+          <ion-select-option value="ENCONTRADO">Encontrado</ion-select-option>
+          <ion-select-option value="ADOPCION">En adopción</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Foto (URL)</ion-label>
+        <ion-input [(ngModel)]="selectedAviso.foto" name="foto"></ion-input>
+      </ion-item>
+
+      <ion-button type="submit">Guardar</ion-button>
+      <ion-button color="danger" (click)="cancelUpdateAviso()">Cancelar</ion-button>
+    </form>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let aviso of avisos">
+      <ion-label>
+        <h2>{{ aviso.nombre }}</h2>
+        <p>Especie: {{ aviso.especie }}</p>
+        <p>Raza: {{ aviso.raza }}</p>
+        <p>Estado: {{ aviso.estado }}</p>
+        <p>Ubicación: {{ aviso.ubicacion }}</p>
+        <p>Fecha: {{ aviso.fecha_aviso }}</p>
+      </ion-label>
+      <ion-button (click)="displayUpdateAvisoForm(aviso)">Modificar</ion-button>
+      <ion-button [color]="aviso.deleted ? 'danger' : 'success'" (click)="toggleAvisoStatus(aviso)">
+        {{ aviso.deleted ? 'Desactivado' : 'Activado' }}
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+</ion-content> 

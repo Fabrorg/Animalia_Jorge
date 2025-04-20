@@ -1,0 +1,136 @@
+import { Component, OnInit } from '@angular/core';
+import { AvisoDomesticoService } from '../services/aviso-domestico.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { IonicModule } from '@ionic/angular';
+
+@Component({
+  selector: 'app-avisos-domesticos',
+  templateUrl: './avisos-domesticos.page.html',
+  styleUrls: ['./avisos-domesticos.page.scss'],
+  standalone: false
+})
+export class AvisosDomesticosPage implements OnInit {
+  avisos: any[] = [];
+  showAvisoForm = false;
+  showUpdateAvisoForm = false;
+  selectedAviso: any = null;
+  newAviso: any = {
+    nombre: '',
+    especie: '',
+    raza: '',
+    descripcion: '',
+    ubicacion: '',
+    estado: '',
+    foto: ''
+  };
+  errorMessage = '';
+
+  constructor(
+    private avisoDomesticoService: AvisoDomesticoService,
+    private http: HttpClient
+  ) { }
+
+  ngOnInit() {
+    this.getAvisos();
+  }
+
+  getAvisos() {
+    this.avisoDomesticoService.getAvisos().subscribe(
+      (data) => {
+        this.avisos = data;
+      },
+      (error) => {
+        console.error('Error al obtener avisos:', error);
+      }
+    );
+  }
+
+  showAddAvisoForm() {
+    this.showAvisoForm = true;
+    this.showUpdateAvisoForm = false;
+    this.newAviso = {
+      nombre: '',
+      especie: '',
+      raza: '',
+      descripcion: '',
+      ubicacion: '',
+      estado: '',
+      foto: ''
+    };
+  }
+
+  cancelAddAviso() {
+    this.showAvisoForm = false;
+  }
+
+  displayUpdateAvisoForm(aviso: any) {
+    this.selectedAviso = { ...aviso };
+    this.showUpdateAvisoForm = true;
+    this.showAvisoForm = false;
+  }
+
+  cancelUpdateAviso() {
+    this.showUpdateAvisoForm = false;
+  }
+
+  addAviso() {
+    const token = sessionStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    const nuevoAviso = {
+      ...this.newAviso,
+      fecha_aviso: new Date().toISOString().split('T')[0]
+    };
+
+    this.avisoDomesticoService.addAviso(nuevoAviso, headers).subscribe(
+      () => {
+        this.getAvisos();
+        this.showAvisoForm = false;
+        this.errorMessage = '';
+      },
+      (error) => {
+        console.error('Error al añadir aviso:', error);
+        this.errorMessage = 'Error al añadir aviso. Por favor, inténtelo de nuevo.';
+      }
+    );
+  }
+
+  updateAviso() {
+    const token = sessionStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.avisoDomesticoService.updateAviso(this.selectedAviso, headers).subscribe(
+      () => {
+        this.getAvisos();
+        this.showUpdateAvisoForm = false;
+        this.errorMessage = '';
+      },
+      (error) => {
+        console.error('Error al actualizar aviso:', error);
+        this.errorMessage = 'Error al actualizar aviso. Por favor, inténtelo de nuevo.';
+      }
+    );
+  }
+
+  toggleAvisoStatus(aviso: any) {
+    const token = sessionStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    const updatedAviso = { ...aviso, deleted: !aviso.deleted };
+    this.avisoDomesticoService.updateAviso(updatedAviso, headers).subscribe(
+      () => {
+        this.getAvisos();
+      },
+      (error) => {
+        console.error('Error al cambiar el estado del aviso:', error);
+      }
+    );
+  }
+} 

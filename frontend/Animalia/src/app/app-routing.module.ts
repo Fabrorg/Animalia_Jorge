@@ -45,8 +45,15 @@ const routes: Routes = [
   {
     path: 'inicio',
     loadChildren: () => import('./inicio/inicio.module').then(m => m.InicioPageModule)
+  },
+  {
+    path: 'avisos-domesticos',
+    loadChildren: () => import('./avisos-domesticos/avisos-domesticos.module').then(m => m.AvisosDomesticosPageModule)
+  },
+  {
+    path: 'lista-avisos-domesticos',
+    loadChildren: () => import('./lista-avisos-domesticos/lista-avisos-domesticos.module').then( m => m.ListaAvisosDomesticosPageModule)
   }
-
 ];
 @NgModule({
   imports: [

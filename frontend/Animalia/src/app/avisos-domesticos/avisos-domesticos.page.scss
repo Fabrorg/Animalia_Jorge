@@ -1,0 +1,28 @@
+ion-content {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+}
+
+.error-message {
+  color: var(--ion-color-danger);
+  padding: 10px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+ion-list {
+  margin-top: 20px;
+}
+
+form {
+  padding: 16px;
+  background: var(--ion-color-light);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+ion-button {
+  margin: 10px 5px;
+} 
