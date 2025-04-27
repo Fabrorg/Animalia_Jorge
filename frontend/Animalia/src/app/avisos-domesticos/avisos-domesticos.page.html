@@ -46,8 +46,12 @@
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Foto (URL)</ion-label>
-        <ion-input [(ngModel)]="newAviso.foto" name="foto"></ion-input>
+        <ion-label position="floating">Foto</ion-label>
+        <ion-button fill="clear" class="upload-button">
+          <ion-icon name="cloud-upload-outline" class="upload-icon"></ion-icon>
+          <input type="file" (change)="subirImagen($event)" class="upload-input" accept="image/*">
+        </ion-button>
+        <ion-img *ngIf="newAviso.foto" [src]="newAviso.foto" class="preview-image"></ion-img>
       </ion-item>
 
       <ion-button type="submit">Guardar</ion-button>
@@ -92,8 +96,12 @@
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Foto (URL)</ion-label>
-        <ion-input [(ngModel)]="selectedAviso.foto" name="foto"></ion-input>
+        <ion-label position="floating">Foto</ion-label>
+        <ion-button fill="clear" class="upload-button">
+          <ion-icon name="cloud-upload-outline" class="upload-icon"></ion-icon>
+          <input type="file" (change)="subirImagen($event)" class="upload-input" accept="image/*">
+        </ion-button>
+        <ion-img *ngIf="selectedAviso.foto" [src]="selectedAviso.foto" class="preview-image"></ion-img>
       </ion-item>
 
       <ion-button type="submit">Guardar</ion-button>
@@ -103,18 +111,58 @@
 
   <ion-list>
     <ion-item *ngFor="let aviso of avisos">
-      <ion-label>
-        <h2>{{ aviso.nombre }}</h2>
-        <p>Especie: {{ aviso.especie }}</p>
-        <p>Raza: {{ aviso.raza }}</p>
-        <p>Estado: {{ aviso.estado }}</p>
-        <p>Ubicación: {{ aviso.ubicacion }}</p>
-        <p>Fecha: {{ aviso.fecha_aviso }}</p>
-      </ion-label>
-      <ion-button (click)="displayUpdateAvisoForm(aviso)">Modificar</ion-button>
-      <ion-button [color]="aviso.deleted ? 'danger' : 'success'" (click)="toggleAvisoStatus(aviso)">
-        {{ aviso.deleted ? 'Desactivado' : 'Activado' }}
-      </ion-button>
+      <ion-card class="aviso-card">
+        <ion-card-header>
+          <ion-card-title>{{ aviso.nombre }}</ion-card-title>
+          <ion-card-subtitle>{{ aviso.estado }}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-img *ngIf="aviso.foto" [src]="aviso.foto" class="aviso-imagen"></ion-img>
+          
+          <ion-list>
+            <ion-item>
+              <ion-label>
+                <h3>Especie</h3>
+                <p>{{ aviso.especie }}</p>
+              </ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                <h3>Raza</h3>
+                <p>{{ aviso.raza }}</p>
+              </ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                <h3>Descripción</h3>
+                <p>{{ aviso.descripcion }}</p>
+              </ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                <h3>Ubicación</h3>
+                <p>{{ aviso.ubicacion }}</p>
+              </ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>
+                <h3>Fecha del aviso</h3>
+                <p>{{ aviso.fecha_aviso | date:'dd/MM/yyyy' }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+
+          <ion-button (click)="displayUpdateAvisoForm(aviso)">Modificar</ion-button>
+          <ion-button [color]="aviso.deleted ? 'danger' : 'success'" (click)="toggleAvisoStatus(aviso)">
+            {{ aviso.deleted ? 'Desactivado' : 'Activado' }}
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
     </ion-item>
   </ion-list>
 

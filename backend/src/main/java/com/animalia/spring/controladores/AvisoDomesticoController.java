@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.animalia.spring.entidades.AvisoDomestico;
-import com.animalia.spring.servicios.AvisoDomesticoServicio;
+import com.animalia.spring.servicio.AvisoDomesticoServicio;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,31 +30,31 @@ public class AvisoDomesticoController {
     @GetMapping
     @Operation(summary = "Obtener todos los avisos", description = "Obtener la lista de todos los avisos de animales domésticos")
     public ResponseEntity<List<AvisoDomestico>> obtenerAvisos() {
-        return ResponseEntity.ok(avisoDomesticoServicio.obtenerAvisos());
+        return ResponseEntity.ok(avisoDomesticoServicio.getAllAvisos());
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Buscar un aviso por ID", description = "Buscar un aviso a partir de su ID")
     public ResponseEntity<AvisoDomestico> obtenerAvisoPorId(@PathVariable long id) {
-        return ResponseEntity.ok(avisoDomesticoServicio.obtenerAvisoPorId(id));
+        return ResponseEntity.ok(avisoDomesticoServicio.getAvisoById(id).orElse(null));
     }
 
     @PostMapping
     @Operation(summary = "Guardar un aviso", description = "Guardar un nuevo aviso en el sistema")
     public ResponseEntity<AvisoDomestico> guardarAviso(@RequestBody AvisoDomestico aviso) {
-        return ResponseEntity.ok(avisoDomesticoServicio.guardarAviso(aviso));
+        return ResponseEntity.ok(avisoDomesticoServicio.saveAviso(aviso));
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar un aviso por ID", description = "Eliminar un aviso del sistema a partir de su ID")
     public ResponseEntity<Void> eliminarAviso(@PathVariable long id) {
-        avisoDomesticoServicio.eliminarAviso(id);
+        avisoDomesticoServicio.deleteAviso(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping
     @Operation(summary = "Actualizar un aviso", description = "Actualizar los datos de un aviso en el sistema")
     public ResponseEntity<AvisoDomestico> actualizarAviso(@RequestBody AvisoDomestico aviso) {
-        return ResponseEntity.ok(avisoDomesticoServicio.actualizarAviso(aviso));
+        return ResponseEntity.ok(avisoDomesticoServicio.saveAviso(aviso));
     }
 } 
