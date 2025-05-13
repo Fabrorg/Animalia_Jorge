@@ -43,6 +43,9 @@ public class AvisoDomestico {
     private String descripcion;
 
     @Column(nullable = false)
+    private String telefono;
+
+    @Column(nullable = false)
     private String ubicacion;
 
     @Column(nullable = false)

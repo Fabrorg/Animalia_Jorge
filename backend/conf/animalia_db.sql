@@ -84,6 +84,7 @@ CREATE TABLE AvisosDomesticos (
     especie VARCHAR(100) NOT NULL,
     raza VARCHAR(100) NOT NULL,
     descripcion TEXT NOT NULL,
+    telefono VARCHAR(15) NOT NULL,
     ubicacion TEXT NOT NULL,
     estado ENUM('PERDIDO', 'ENCONTRADO', 'ADOPCION') NOT NULL,
     fecha_aviso DATE NOT NULL,

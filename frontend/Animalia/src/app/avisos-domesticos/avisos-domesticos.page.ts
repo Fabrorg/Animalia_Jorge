@@ -20,6 +20,7 @@ export class AvisosDomesticosPage implements OnInit {
     especie: '',
     raza: '',
     descripcion: '',
+    telefono: '',
     ubicacion: '',
     estado: '',
     foto: ''
@@ -57,6 +58,7 @@ export class AvisosDomesticosPage implements OnInit {
       especie: '',
       raza: '',
       descripcion: '',
+      telefono: '',
       ubicacion: '',
       estado: '',
       foto: ''

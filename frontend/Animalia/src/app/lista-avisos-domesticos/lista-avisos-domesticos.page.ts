@@ -10,6 +10,7 @@ interface Aviso {
   descripcion: string;
   ubicacion: string;
   estado: string;
+  telefono: string;
   foto?: string;
   fecha_aviso: string;
   deleted: boolean;
