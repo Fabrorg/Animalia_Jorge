@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AvisoDomesticoService } from '../services/aviso-domestico.service';
 import { HttpClient } from '@angular/common/http';
+import { ToastController } from '@ionic/angular';
 
 interface Aviso {
   id?: number;
@@ -28,7 +29,8 @@ export class ListaAvisosDomesticosPage implements OnInit {
 
   constructor(
     private avisoDomesticoService: AvisoDomesticoService,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -45,5 +47,22 @@ export class ListaAvisosDomesticosPage implements OnInit {
         this.errorMessage = 'Error al cargar los avisos. Por favor, inténtelo de nuevo.';
       }
     );
+  }
+
+  copiarTelefono(telefono: string) {
+    navigator.clipboard.writeText(telefono).then(() => {
+      this.presentToast('Teléfono copiado correctamente en el Portapapeles');
+    }).catch(err => {
+      console.error('Error al copiar el teléfono:', err);
+    });
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 }

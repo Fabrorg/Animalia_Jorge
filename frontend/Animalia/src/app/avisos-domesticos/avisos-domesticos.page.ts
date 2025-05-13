@@ -67,6 +67,16 @@ export class AvisosDomesticosPage implements OnInit {
 
   cancelAddAviso() {
     this.showAvisoForm = false;
+    this.newAviso = {
+      nombre: '',
+      especie: '',
+      raza: '',
+      descripcion: '',
+      telefono: '',
+      ubicacion: '',
+      estado: '',
+      foto: ''
+    };
   }
 
   displayUpdateAvisoForm(aviso: any) {
@@ -77,6 +87,7 @@ export class AvisosDomesticosPage implements OnInit {
 
   cancelUpdateAviso() {
     this.showUpdateAvisoForm = false;
+    this.selectedAviso = null;
   }
 
   addAviso() {
@@ -169,4 +180,10 @@ export class AvisosDomesticosPage implements OnInit {
       });
     }
   }
-} 
+
+  filtrarNumeros(event: any) {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^0-9]/g, '');
+    this.newAviso.telefono = input.value; // Actualizar el modelo con el valor filtrado
+  }
+}

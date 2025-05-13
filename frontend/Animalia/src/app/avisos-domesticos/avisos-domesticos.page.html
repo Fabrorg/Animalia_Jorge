@@ -5,39 +5,40 @@
 </ion-header>
 
 <ion-content>
-  <div style="text-align: center; margin: 20px;">
+  <!--<div style="text-align: center; margin: 20px;">
     <ion-button (click)="showAddAvisoForm()">Añadir Aviso</ion-button>
-  </div>
+  </div>-->
 
-  <div *ngIf="showAvisoForm">
+  <div>
     <form (submit)="addAviso()">
-      <ion-item>
-        <ion-label position="floating">Nombre</ion-label>
-        <ion-input [(ngModel)]="newAviso.nombre" name="nombre" required></ion-input>
-      </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Especie</ion-label>
-        <ion-input [(ngModel)]="newAviso.especie" name="especie" required></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Raza</ion-label>
+        <ion-label position="floating">Propietario/a</ion-label>
         <ion-input [(ngModel)]="newAviso.raza" name="raza" required></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Descripción</ion-label>
+        <ion-label position="floating">Nombre de la Mascota</ion-label>
+        <ion-input [(ngModel)]="newAviso.nombre" name="nombre" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Tipo de Animal</ion-label>
+        <ion-input [(ngModel)]="newAviso.especie" name="especie" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descripción e Información Importante</ion-label>
         <ion-textarea [(ngModel)]="newAviso.descripcion" name="descripcion" required></ion-textarea>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Teléfono de Contacto</ion-label>
-        <ion-input [(ngModel)]="newAviso.telefono" name="telefono" required></ion-input>
+        <ion-input [(ngModel)]="newAviso.telefono" name="telefono" required maxlength="9" type="tel" (ionInput)="filtrarNumeros($event)"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Ubicación</ion-label>
+        <ion-label position="floating">Ubicación de la Desaparición</ion-label>
         <ion-input [(ngModel)]="newAviso.ubicacion" name="ubicacion" required></ion-input>
       </ion-item>
 
@@ -59,12 +60,14 @@
         <ion-img *ngIf="newAviso.foto" [src]="newAviso.foto" class="preview-image"></ion-img>
       </ion-item>
 
-      <ion-button type="submit">Guardar</ion-button>
-      <ion-button color="danger" (click)="cancelAddAviso()">Cancelar</ion-button>
+      <div class="d-flex w-100 justify-between">
+        <ion-button class="w-100" type="submit">Guardar</ion-button>
+        <ion-button class="w-100" (click)="cancelAddAviso()">Borrar Datos</ion-button>
+      </div>
     </form>
   </div>
 
-  <div *ngIf="showUpdateAvisoForm">
+  <!--<div *ngIf="showUpdateAvisoForm">
     <form (submit)="updateAviso()">
       <ion-item>
         <ion-label position="floating">Nombre</ion-label>
@@ -108,9 +111,10 @@
         </ion-button>
         <ion-img *ngIf="selectedAviso.foto" [src]="selectedAviso.foto" class="preview-image"></ion-img>
       </ion-item>
-
-      <ion-button type="submit">Guardar</ion-button>
-      <ion-button color="danger" (click)="cancelUpdateAviso()">Cancelar</ion-button>
+      <ion-item clas="d-flex justify-between">
+        <ion-button type="submit">Guardar</ion-button>
+        <ion-button color="danger" (click)="cancelUpdateAviso()">Borrar Datos</ion-button>
+      </ion-item>
     </form>
   </div>
 
@@ -169,9 +173,9 @@
         </ion-card-content>
       </ion-card>
     </ion-item>
-  </ion-list>
+  </ion-list>-->
 
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
-</ion-content> 
+</ion-content>
