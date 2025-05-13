@@ -20,19 +20,19 @@
         </ion-card-header>
 
         <ion-card-content>
-          <ion-img *ngIf="aviso.foto" [src]="aviso.foto" class="aviso-imagen"></ion-img>
+          <ion-img style="height: 250px;" *ngIf="aviso.foto" [src]="aviso.foto" class="aviso-imagen"></ion-img>
           
           <ion-list>
             <ion-item>
               <ion-label>
-                <h3>Especie</h3>
+                <h3>Propietario</h3>
                 <p>{{ aviso.especie }}</p>
               </ion-label>
             </ion-item>
 
             <ion-item>
               <ion-label>
-                <h3>Raza</h3>
+                <h3>Tipo de Animal</h3>
                 <p>{{ aviso.raza }}</p>
               </ion-label>
             </ion-item>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AvisoDomesticoService } from '../services/aviso-domestico.service';
 import { HttpClient } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
+import { environment } from 'src/environments/environment';
 
 interface Aviso {
   id?: number;
@@ -12,7 +13,7 @@ interface Aviso {
   ubicacion: string;
   estado: string;
   telefono: string;
-  foto?: string;
+  foto?: string | null;
   fecha_aviso: string;
   deleted: boolean;
 }
@@ -40,7 +41,12 @@ export class ListaAvisosDomesticosPage implements OnInit {
   getAvisos() {
     this.avisoDomesticoService.getAvisos().subscribe(
       (data: Aviso[]) => {
-        this.avisos = data.filter((aviso: Aviso) => !aviso.deleted);
+        this.avisos = data
+          .filter((aviso: Aviso) => !aviso.deleted)
+          .map((aviso: Aviso) => ({
+            ...aviso,
+            foto: aviso.foto ? `${environment.apiUrl}/imagen/${aviso.foto}` : null
+          }));
       },
       (error) => {
         console.error('Error al obtener avisos:', error);
@@ -48,6 +54,18 @@ export class ListaAvisosDomesticosPage implements OnInit {
       }
     );
   }
+
+  /*getAvisos() {
+    this.avisoDomesticoService.getAvisos().subscribe(
+      (data: Aviso[]) => {
+        this.avisos = data.filter((aviso: Aviso) => !aviso.deleted);
+      },
+      (error) => {
+        console.error('Error al obtener avisos:', error);
+        this.errorMessage = 'Error al cargar los avisos. Por favor, inténtelo de nuevo.';
+      }
+    );
+  }*/
 
   copiarTelefono(telefono: string) {
     navigator.clipboard.writeText(telefono).then(() => {
