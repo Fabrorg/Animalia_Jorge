@@ -105,6 +105,16 @@ export class AvisosDomesticosPage implements OnInit {
       () => {
         this.getAvisos();
         this.showAvisoForm = false;
+        this.newAviso = { // Restablece los valores del formulario
+        nombre: '',
+        especie: '',
+        raza: '',
+        descripcion: '',
+        telefono: '',
+        ubicacion: '',
+        estado: '',
+        foto: ''
+      };
         this.errorMessage = '';
       },
       (error) => {
