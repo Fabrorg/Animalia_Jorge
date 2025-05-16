@@ -27,6 +27,7 @@ interface Aviso {
 export class ListaAvisosDomesticosPage implements OnInit {
   avisos: Aviso[] = [];
   errorMessage = '';
+  filtroNombre: string = '';
 
   constructor(
     private avisoDomesticoService: AvisoDomesticoService,
@@ -82,5 +83,14 @@ export class ListaAvisosDomesticosPage implements OnInit {
       position: 'bottom'
     });
     toast.present();
+  }
+
+  getAvisosFiltrados(): Aviso[] {
+    if (!this.filtroNombre.trim()) {
+      return this.avisos;
+    }
+    return this.avisos.filter(aviso =>
+      aviso.nombre.toLowerCase().includes(this.filtroNombre.trim().toLowerCase())
+    );
   }
 }

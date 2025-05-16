@@ -11,16 +11,30 @@
     </ion-toolbar>
   </ion-header>
 
+  <div class="buscador-wrapper">
+    <ion-item class="buscador-item" lines="none">
+      <ion-icon name="search-outline" slot="start" class="buscador-icon"></ion-icon>
+      <ion-input
+        [(ngModel)]="filtroNombre"
+        placeholder="Buscar Nombre de Mascota"
+        class="buscador-input"
+        clearInput>
+      </ion-input>
+    </ion-item>
+  </div>
+
   <ion-list>
-    <ion-item *ngFor="let aviso of avisos">
+    <ion-item *ngFor="let aviso of getAvisosFiltrados()">
       <ion-card class="aviso-card">
+        <!--<ion-img *ngIf="aviso.foto" [src]="aviso.foto" class="aviso-imagen"></ion-img>-->
+        
         <ion-card-header>
           <ion-card-title>{{ aviso.nombre }}</ion-card-title>
           <ion-card-subtitle>{{ aviso.estado }}</ion-card-subtitle>
         </ion-card-header>
 
         <ion-card-content>
-          <ion-img style="height: 250px;" *ngIf="aviso.foto" [src]="aviso.foto" class="aviso-imagen"></ion-img>
+          <img *ngIf="aviso.foto" [src]="aviso.foto" class="aviso-imagen" alt="Imagen del aviso"/>
           
           <ion-list>
             <ion-item>

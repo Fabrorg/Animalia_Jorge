@@ -14,7 +14,7 @@ ion-content {
 
 .aviso-imagen {
   width: 100%;
-  max-height: 200px;
+  max-height: 500px;
   object-fit: cover;
   margin-bottom: 16px;
 }
@@ -54,4 +54,37 @@ h3 {
 p {
   color: var(--ion-color-medium);
   margin: 0;
+}
+
+.buscador-wrapper {
+  width: 100%;
+  margin: 12px 0 18px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.buscador-item {
+  width: 100%;
+  max-width: none;
+  border-radius: 30px;
+  --background: transparent;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  --padding-start: 10px;
+  --inner-padding-end: 10px;
+  border: 1.5px solid var(--ion-color-medium);
+  /* Para que el borde sea visible y redondo */
+  overflow: hidden;
+}
+
+.buscador-icon {
+  font-size: 1.3em;
+  color: var(--ion-color-medium);
+  margin-right: 4px;
+}
+
+.buscador-input {
+  font-size: 1em;
+  padding-left: 4px;
+  width: 100%;
+  border-radius: 30px;
 }
