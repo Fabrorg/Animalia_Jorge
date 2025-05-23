@@ -239,4 +239,17 @@ export class AvisosDomesticosPage implements OnInit {
     input.value = input.value.replace(/[^0-9]/g, '');
     this.newAviso.telefono = input.value; // Actualizar el modelo con el valor filtrado
   }
+
+  borrarDatos() {
+    this.newAviso = {
+      nombre: '',
+      especie: '',
+      raza: '',
+      descripcion: '',
+      telefono: '',
+      ubicacion: '',
+      estado: '',
+      foto: ''
+    };
+  }
 }
