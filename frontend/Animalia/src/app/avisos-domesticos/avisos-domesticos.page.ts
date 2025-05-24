@@ -33,7 +33,7 @@ export class AvisosDomesticosPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAvisos();
+    //this.getAvisos();
   }
 
   getAvisos() {
@@ -48,46 +48,6 @@ export class AvisosDomesticosPage implements OnInit {
         console.error('Error al obtener avisos:', error);
       }
     );
-  }
-
-  showAddAvisoForm() {
-    this.showAvisoForm = true;
-    this.showUpdateAvisoForm = false;
-    this.newAviso = {
-      nombre: '',
-      especie: '',
-      raza: '',
-      descripcion: '',
-      telefono: '',
-      ubicacion: '',
-      estado: '',
-      foto: ''
-    };
-  }
-
-  cancelAddAviso() {
-    this.showAvisoForm = false;
-    this.newAviso = {
-      nombre: '',
-      especie: '',
-      raza: '',
-      descripcion: '',
-      telefono: '',
-      ubicacion: '',
-      estado: '',
-      foto: ''
-    };
-  }
-
-  displayUpdateAvisoForm(aviso: any) {
-    this.selectedAviso = { ...aviso };
-    this.showUpdateAvisoForm = true;
-    this.showAvisoForm = false;
-  }
-
-  cancelUpdateAviso() {
-    this.showUpdateAvisoForm = false;
-    this.selectedAviso = null;
   }
 
   addAviso() {
@@ -135,43 +95,7 @@ export class AvisosDomesticosPage implements OnInit {
       }
     );
   }
-
-  updateAviso() {
-    const token = sessionStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    this.avisoDomesticoService.updateAviso(this.selectedAviso, headers).subscribe(
-      () => {
-        this.getAvisos();
-        this.showUpdateAvisoForm = false;
-        this.errorMessage = '';
-      },
-      (error) => {
-        console.error('Error al actualizar aviso:', error);
-        this.errorMessage = 'Error al actualizar aviso. Por favor, inténtelo de nuevo.';
-      }
-    );
-  }
-
-  toggleAvisoStatus(aviso: any) {
-    const token = sessionStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    const updatedAviso = { ...aviso, deleted: !aviso.deleted };
-    this.avisoDomesticoService.updateAviso(updatedAviso, headers).subscribe(
-      () => {
-        this.getAvisos();
-      },
-      (error) => {
-        console.error('Error al cambiar el estado del aviso:', error);
-      }
-    );
-  }
-
+  
   /*subirImagen(event: any) {
     const file = event.target.files[0];
     if (file) {

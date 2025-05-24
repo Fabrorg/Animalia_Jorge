@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class AvisoDomesticoService {
-  private apiUrl = `${environment.apiUrl}/avisos-domesticos`;
+  private apiUrl = `${environment.apiUrl}`;
 
   constructor(private http: HttpClient) { }
 
@@ -16,11 +16,11 @@ export class AvisoDomesticoService {
   }
 
   getAvisoById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/avisos-domesticos/${id}`);
   }
 
   addAviso(aviso: any, headers: HttpHeaders): Observable<any> {
-    return this.http.post(this.apiUrl, aviso, { headers });
+    return this.http.post(this.apiUrl + '/avisos-domesticos', aviso, { headers });
   }
 
   updateAviso(aviso: any, headers: HttpHeaders): Observable<any> {

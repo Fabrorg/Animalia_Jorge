@@ -5,12 +5,7 @@
 </ion-header>
 
 <ion-content >
-
-  <div style="text-align: center; margin: 20px;">
-    <ion-button (click)="showAddAvisoForm()">Añadir Aviso</ion-button>
-  </div>
-
-  <div *ngIf="showAvisoForm">
+  <div>
     <form (submit)="addAviso()">
 
       <ion-item>
@@ -67,62 +62,6 @@
       </ion-item>
     </form>
   </div>
-
-  <div *ngIf="showUpdateAvisoForm">
-    <form (submit)="updateAviso()">
-      <ion-item>
-        <ion-label position="floating">Propietario</ion-label>
-        <ion-input [(ngModel)]="selectedAviso.nombre" name="nombre" required></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Nombre de la Mascota</ion-label>
-        <ion-input [(ngModel)]="selectedAviso.especie" name="especie" required></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Tipo de Animal</ion-label>
-        <ion-input [(ngModel)]="selectedAviso.raza" name="raza" required></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Descripción</ion-label>
-        <ion-textarea [(ngModel)]="selectedAviso.descripcion" name="descripcion" required></ion-textarea>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Teléfono de Contacto</ion-label>
-        <ion-input [(ngModel)]="selectedAviso.telefono" name="telefono" required maxlength="9" type="tel" (ionInput)="filtrarNumeros($event)"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Ubicación</ion-label>
-        <ion-input [(ngModel)]="selectedAviso.ubicacion" name="ubicacion" required></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Estado</ion-label>
-        <ion-select [(ngModel)]="selectedAviso.estado" name="estado" required>
-          <ion-select-option value="PERDIDO">Perdido</ion-select-option>
-          <ion-select-option value="ENCONTRADO">Encontrado</ion-select-option>
-          <ion-select-option value="ADOPCION">En adopción</ion-select-option>
-        </ion-select>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Foto</ion-label>
-        <ion-button fill="clear" class="upload-button">
-          <ion-icon name="cloud-upload-outline" class="upload-icon"></ion-icon>
-          <input type="file" (change)="subirImagen($event)" class="upload-input" accept="image/*">
-        </ion-button>
-        <ion-img *ngIf="selectedAviso.foto" [src]="selectedAviso.foto" class="preview-image"></ion-img>
-      </ion-item>
-
-      <ion-button type="submit">Guardar</ion-button>
-      <ion-button color="danger" (click)="cancelUpdateAviso()">Cancelar</ion-button>
-    </form>
-  </div>
-
   <div *ngIf="errorMessage" class="error-message">
     {{ errorMessage }}
   </div>
