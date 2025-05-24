@@ -95,39 +95,8 @@ export class AvisosDomesticosPage implements OnInit {
       }
     );
   }
-  
-  /*subirImagen(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const token = sessionStorage.getItem('token');
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${token}`
-      });
 
-      const formData = new FormData();
-      formData.append('file', file);
-
-      this.http.post(`${environment.apiUrl}/subir-imagen`, formData, {
-        headers: headers,
-        observe: 'response'
-      }).subscribe(response => {
-        if (response.status === 200 && response.body) {
-          const url_foto = (response.body as any).url_foto_perfil;
-          if (this.showAvisoForm) {
-            this.newAviso.foto = url_foto;
-          } else if (this.showUpdateAvisoForm) {
-            this.selectedAviso.foto = url_foto;
-          }
-        } else {
-          console.error('Error al subir la imagen:', response.statusText);
-        }
-      }, error => {
-        console.error('Error al subir la imagen:', error);
-      });
-    }
-  }*/
-
-    subirImagen(event: any) {
+  subirImagen(event: any) {
     const file = event.target.files[0];
     if (file) {
       const token = sessionStorage.getItem('token');
@@ -157,6 +126,37 @@ export class AvisosDomesticosPage implements OnInit {
       });
     }
   }
+
+    /*subirImagen(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const token = sessionStorage.getItem('token');
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      this.http.post(`${environment.apiUrl}/subir-imagen`, formData, {
+        headers: headers,
+        observe: 'response'
+      }).subscribe(response => {
+        if (response.status === 200 && response.body) {
+          const url_foto = (response.body as any).url_foto_perfil;
+          if (this.showAvisoForm) {
+            this.newAviso.foto = url_foto;
+          } else if (this.showUpdateAvisoForm) {
+            this.selectedAviso.foto = url_foto;
+          }
+        } else {
+          console.error('Error al subir la imagen:', response.statusText);
+        }
+      }, error => {
+        console.error('Error al subir la imagen:', error);
+      });
+    }
+  }*/
 
   filtrarNumeros(event: any) {
     const input = event.target as HTMLInputElement;

@@ -12,7 +12,7 @@ export class AvisoDomesticoService {
   constructor(private http: HttpClient) { }
 
   getAvisos(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    return this.http.get<any>(this.apiUrl + '/avisos-domesticos');
   }
 
   getAvisoById(id: number): Observable<any> {
