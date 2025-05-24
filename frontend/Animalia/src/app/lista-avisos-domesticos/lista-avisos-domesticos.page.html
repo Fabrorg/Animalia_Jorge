@@ -34,7 +34,10 @@
         </ion-card-header>
 
         <ion-card-content>
-          <img *ngIf="aviso.foto" [src]="aviso.foto" class="aviso-imagen" alt="Imagen del aviso"/>
+          <div style="display: flex; align-items: center; justify-content: center;">
+            <img *ngIf="aviso.foto" [src]="aviso.foto" class="aviso-imagen" alt="Imagen del aviso"/>
+          </div>
+          
           
           <ion-list>
             <ion-item>

@@ -41,7 +41,7 @@ public class ControladorArchivos {
 
     @PostMapping("/subir-imagen")
     @Operation(summary = "Subir una imagen", description = "Subir una imagen desde los archivos del sistema.")
-    public ResponseEntity<Map<String, String>> subirImagen(@RequestBody MultipartFile file) {
+    /*public ResponseEntity<Map<String, String>> subirImagen(@RequestBody MultipartFile file) {
         if (file == null || file.isEmpty()) {
             return ResponseEntity.badRequest().body(Map.of("error", "El archivo está vacío o no se ha enviado."));
         }
@@ -62,12 +62,34 @@ public class ControladorArchivos {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("error", "Error al subir la imagen"));
+        }*/
+        public ResponseEntity<Map<String, String>> subirImagen(@RequestBody MultipartFile file) {
+    if (file == null || file.isEmpty()) {
+        return ResponseEntity.badRequest().body(Map.of("error", "El archivo está vacío o no se ha enviado."));
+    }
+    try {
+        String uploadDir = "/app/static/img";
+        Path uploadPath = Paths.get(uploadDir);
+
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
         }
+
+        Path path = uploadPath.resolve(file.getOriginalFilename());
+        Files.write(path, file.getBytes());
+
+        return ResponseEntity
+                .ok(Map.of("message", "Imagen subida exitosamente", "url_foto_perfil", file.getOriginalFilename()));
+    } catch (IOException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(Map.of("error", "Error al subir la imagen"));
+    }
     }
 
     @GetMapping("/imagen/{nombreImagen}")
     @Operation(summary = "Buscar una imagen de usuario", description = "Buscar una imagen de usuario a partir de su nombre")
-    public ResponseEntity<Resource> obtenerImagen(@PathVariable String nombreImagen) {
+    /*public ResponseEntity<Resource> obtenerImagen(@PathVariable String nombreImagen) {
         try {
             Resource resource = new ClassPathResource("static/img/" + nombreImagen);
 
@@ -80,7 +102,24 @@ public class ControladorArchivos {
                     .body(resource);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }*/
+
+        public ResponseEntity<byte[]> obtenerImagen(@PathVariable String nombreImagen) {
+    try {
+        Path imagePath = Paths.get("/app/static/img", nombreImagen);
+
+        if (!Files.exists(imagePath)) {
+            return ResponseEntity.notFound().build();
         }
+
+        byte[] imageBytes = Files.readAllBytes(imagePath);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(imageBytes);
+    } catch (IOException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
     }
 
     @GetMapping("/{id}/fotos")
