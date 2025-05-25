@@ -53,7 +53,11 @@ const routes: Routes = [
   {
     path: 'lista-avisos-domesticos',
     loadChildren: () => import('./lista-avisos-domesticos/lista-avisos-domesticos.module').then( m => m.ListaAvisosDomesticosPageModule)
+  },  {
+    path: 'avisos-admin',
+    loadChildren: () => import('./avisos-admin/avisos-admin.module').then( m => m.AvisosAdminPageModule)
   }
+
 ];
 @NgModule({
   imports: [

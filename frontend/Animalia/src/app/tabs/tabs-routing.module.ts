@@ -52,6 +52,10 @@ const routes: Routes = [
         loadChildren: () => import('../lista-avisos-domesticos/lista-avisos-domesticos.module').then(m => m.ListaAvisosDomesticosPageModule)
       },
       {
+        path: 'avisos-admin',
+        loadChildren: () => import('../avisos-admin/avisos-admin.module').then(m => m.AvisosAdminPageModule)
+      },
+      {
         path: '',
         redirectTo: '/Inicio',
         pathMatch: 'full'

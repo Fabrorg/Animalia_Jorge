@@ -19,12 +19,12 @@ interface Aviso {
 }
 
 @Component({
-  selector: 'app-lista-avisos-domesticos',
-  templateUrl: './lista-avisos-domesticos.page.html',
-  styleUrls: ['./lista-avisos-domesticos.page.scss'],
-  standalone: false
+  selector: 'app-avisos-admin',
+  templateUrl: './avisos-admin.page.html',
+  styleUrls: ['./avisos-admin.page.scss'],
+  standalone: false,
 })
-export class ListaAvisosDomesticosPage implements OnInit {
+export class AvisosAdminPage implements OnInit {
   avisos: Aviso[] = [];
   errorMessage = '';
   filtroNombre: string = '';
@@ -55,7 +55,6 @@ export class ListaAvisosDomesticosPage implements OnInit {
       }
     );
   }
-
 
   copiarTelefono(telefono: string) {
     navigator.clipboard.writeText(telefono).then(() => {

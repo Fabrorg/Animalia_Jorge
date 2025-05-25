@@ -46,6 +46,11 @@
       <ion-label>Iniciar Sesión</ion-label>
     </ion-tab-button>
 
+    <ion-tab-button *ngIf="userRol == 'ADMIN'" tab="avisos-admin" href="/tabs/avisos-admin">
+      <ion-icon name="notifications"></ion-icon>
+      <ion-label>Avisos Admin</ion-label>
+    </ion-tab-button>
+
     <ion-tab-button
       *ngIf="userRol == 'USER' ||  userRol == 'ADMIN' || userRol == 'EMPRESA'" tab="Perfil" href="/tabs/Perfil">
       <ion-icon name="person"></ion-icon>
