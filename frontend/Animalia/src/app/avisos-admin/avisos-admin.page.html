@@ -27,8 +27,19 @@
     <ion-item *ngFor="let aviso of getAvisosFiltrados()">
       <ion-card class="aviso-card">
         <ion-card-header>
-          <ion-card-title>{{ aviso.nombre }}</ion-card-title>
-          <ion-card-subtitle>{{ aviso.estado }}</ion-card-subtitle>
+          <div class="card-header-content">
+            <div>
+              <ion-card-title>{{ aviso.nombre }}</ion-card-title>
+              <ion-card-subtitle>{{ aviso.estado }}</ion-card-subtitle>
+            </div>
+            <ion-button 
+              fill="clear" 
+              color="danger" 
+              (click)="eliminarAviso(aviso.id!)"
+              class="delete-button">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </div>
         </ion-card-header>
 
         <ion-card-content>

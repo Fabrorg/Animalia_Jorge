@@ -27,7 +27,8 @@ export class AvisoDomesticoService {
     return this.http.put(this.apiUrl, aviso, { headers });
   }
 
-  deleteAviso(id: number, headers: HttpHeaders): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`, { headers });
+  deleteAviso(id: number, headers?: HttpHeaders): Observable<any> {
+    const httpOptions = headers ? { headers } : {};
+    return this.http.delete(`${this.apiUrl}/avisos-domesticos/${id}`, httpOptions);
   }
-} 
+}

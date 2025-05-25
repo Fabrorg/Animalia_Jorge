@@ -17,3 +17,4 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [AvisosAdminPage]
 })
 export class AvisosAdminPageModule {}
+

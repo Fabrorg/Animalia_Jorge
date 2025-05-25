@@ -89,6 +89,26 @@ p {
   border-radius: 30px;
 }
 
+.card-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.delete-button {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+  min-height: auto;
+  height: auto;
+}
+
+.delete-button ion-icon {
+  font-size: 1.2em;
+}
+
 @media (max-width: 720px) {
   .aviso-imagen {
   width: 100%;

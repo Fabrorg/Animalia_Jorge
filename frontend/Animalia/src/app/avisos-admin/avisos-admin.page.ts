@@ -81,4 +81,19 @@ export class AvisosAdminPage implements OnInit {
       aviso.nombre.toLowerCase().includes(this.filtroNombre.trim().toLowerCase())
     );
   }
+
+  eliminarAviso(id: number) {
+    if (confirm('¿Está seguro de que desea eliminar este aviso?')) {
+      this.avisoDomesticoService.deleteAviso(id).subscribe(
+        () => {
+          this.avisos = this.avisos.filter(aviso => aviso.id !== id);
+          this.presentToast('Aviso eliminado correctamente');
+        },
+        (error) => {
+          console.error('Error al eliminar aviso:', error);
+          this.presentToast('Error al eliminar el aviso');
+        }
+      );
+    }
+  }
 }
