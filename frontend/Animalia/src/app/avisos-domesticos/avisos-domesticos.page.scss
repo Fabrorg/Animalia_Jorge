@@ -109,6 +109,21 @@ ion-button {
   margin-top: 16px;
 }
 
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.action-button {
+  flex: 1;
+  height: 50px;
+  margin: 0;
+  --border-radius: 8px;
+}
+
 @media (max-width: 720px) {
   div {
     display: flex;

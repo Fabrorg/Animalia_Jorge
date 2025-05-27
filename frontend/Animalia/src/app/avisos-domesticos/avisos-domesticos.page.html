@@ -56,10 +56,10 @@
         <ion-img *ngIf="newAviso.foto" [src]="newAviso.foto" class="preview-image"></ion-img>
       </ion-item>
 
-      <ion-item clas="d-flex justify-between">
-        <ion-button type="submit">Guardar</ion-button>
-        <ion-button color="danger" type="button" (click)="borrarDatos()">Borrar Datos</ion-button>
-      </ion-item>
+      <div class="button-container">
+        <ion-button type="submit" class="action-button" expand="block">Guardar</ion-button>
+        <ion-button color="danger" type="button" (click)="borrarDatos()" class="action-button" expand="block">Borrar Datos</ion-button>
+      </div>
     </form>
   </div>
   <div *ngIf="errorMessage" class="error-message">
