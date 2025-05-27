@@ -5,11 +5,70 @@ ion-content {
   --padding-bottom: 16px;
 }
 
+ion-list {
+  --ion-item-background: transparent;
+  --ion-item-border-color: transparent;
+  --ion-item-inner-border-width: 0;
+}
+
 .aviso-card {
   width: 100%;
   margin: 16px 0;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  
+  ion-item {
+    --padding-start: 16px;
+    --padding-end: 16px;
+  }
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+}
+
+.image-container {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ion-color-light);
+}
+
+.aviso-imagen-header {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder-icon {
+  font-size: 24px;
+  color: var(--ion-color-medium);
+}
+
+.header-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pet-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0 0 4px 0;
+  color: var(--ion-color-dark);
+}
+
+.owner-name {
+  font-size: 0.9em;
+  margin: 0 0 8px 0;
+  color: var(--ion-color-medium);
 }
 
 .aviso-imagen {
@@ -44,6 +103,11 @@ ion-card-subtitle {
 ion-item {
   --padding-start: 0;
   --inner-padding-end: 0;
+  --background: transparent;
+}
+
+ion-list {
+  --background: transparent;
 }
 
 h3 {
@@ -89,11 +153,194 @@ p {
   border-radius: 30px;
 }
 
-@media (max-width: 720px) {
-  .aviso-imagen {
+.accordion-content {
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+  border-radius: 0 0 8px 8px;
+  padding: 20px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-item {
+  background: #333333;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  border-left: 4px solid var(--ion-color-primary);
+  transition: all 0.3s ease;
+  
+  &.clickable {
+    cursor: pointer;
+    border-left-color: var(--ion-color-success);
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      background: #3a3a3a;
+    }
+  }
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.info-icon {
+  font-size: 20px;
+  color: var(--ion-color-primary);
+  
+  &.phone-icon {
+    color: var(--ion-color-success);
+  }
+  
+  &.location-icon {
+    color: var(--ion-color-success);
+  }
+}
+
+.copy-icon {
+  font-size: 16px;
+  color: var(--ion-color-medium);
+  margin-left: auto;
+}
+
+.info-header h3 {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.info-value {
+  font-size: 1em;
+  color: #cccccc;
+  margin: 0;
+  line-height: 1.4;
+  
+  &.description {
+    font-style: italic;
+    background: rgba(var(--ion-color-primary-rgb), 0.15);
+    padding: 8px;
+    border-radius: 6px;
+    color: #e0e0e0;
+  }
+  
+  &.phone-number {
+    font-weight: 600;
+    color: var(--ion-color-success);
+    font-size: 1.1em;
+  }
+}
+
+.image-section {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.large-image-container {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    transform: scale(1.02);
+    
+    .image-overlay {
+      opacity: 1;
+    }
+  }
+}
+
+.large-image {
   width: 100%;
-  max-height: 500px;
+  height: 250px;
   object-fit: cover;
-  margin-bottom: 16px;
+  display: block;
 }
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
+
+.expand-icon {
+  font-size: 32px;
+  color: white;
+}
+
+.modal-content {
+  --background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullscreen-image-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(255,255,255,0.1);
+}
+
+@media (min-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr 300px;
+    gap: 30px;
+  }
+  
+  .large-image {
+    height: 280px;
+  }
+}
+
+@media (max-width: 720px) {
+  .accordion-content {
+    padding: 16px;
+  }
+  
+  .info-item {
+    padding: 12px;
+  }
+  
+  .large-image {
+    height: 200px;
+  }
+}
+

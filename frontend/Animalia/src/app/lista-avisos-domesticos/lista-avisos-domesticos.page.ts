@@ -28,6 +28,8 @@ export class ListaAvisosDomesticosPage implements OnInit {
   avisos: Aviso[] = [];
   errorMessage = '';
   filtroNombre: string = '';
+  isImageModalOpen = false;
+  selectedImage: string = '';
 
   constructor(
     private avisoDomesticoService: AvisoDomesticoService,
@@ -65,6 +67,14 @@ export class ListaAvisosDomesticosPage implements OnInit {
     });
   }
 
+  copiarUbicacion(ubicacion: string) {
+    navigator.clipboard.writeText(ubicacion).then(() => {
+      this.presentToast('Ubicación copiada correctamente en el Portapapeles');
+    }).catch(err => {
+      console.error('Error al copiar la ubicación:', err);
+    });
+  }
+
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
@@ -81,5 +91,19 @@ export class ListaAvisosDomesticosPage implements OnInit {
     return this.avisos.filter(aviso =>
       aviso.nombre.toLowerCase().includes(this.filtroNombre.trim().toLowerCase())
     );
+  }
+
+  trackByAvisoId(index: number, aviso: Aviso): number {
+    return aviso.id || index;
+  }
+
+  openImageModal(imageUrl: string) {
+    this.selectedImage = imageUrl;
+    this.isImageModalOpen = true;
+  }
+
+  closeImageModal() {
+    this.isImageModalOpen = false;
+    this.selectedImage = '';
   }
 }
